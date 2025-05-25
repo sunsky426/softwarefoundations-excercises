@@ -1443,8 +1443,7 @@ Theorem identity_fn_applied_twice :
   (forall (x : bool), f x = x) ->
   forall (b : bool), f (f b) = b.
 Proof.
-  (* FILL IN HERE *) Admitted.
-
+intros f H b0. rewrite -> H. rewrite -> H. reflexivity. Qed.
 (** [] *)
 
 (** **** Exercise: 1 star, standard (negation_fn_applied_twice)
@@ -1453,7 +1452,15 @@ Proof.
     to the previous one but where the second hypothesis says that the
     function [f] has the property that [f x = negb x]. *)
 
-(* FILL IN HERE *)
+Theorem negation_fn_applied_twice :
+  forall (f: bool -> bool),
+  (forall (x: bool), f x = negb x) ->
+  forall (b: bool), f (f b) = b.
+Proof.
+  intros f H b. rewrite -> H. rewrite -> H. destruct b.
+  - simpl. reflexivity.
+  - simpl. reflexivity.
+Qed.
 
 (* Do not modify the following line: *)
 Definition manual_grade_for_negation_fn_applied_twice : option (nat*string) := None.
@@ -1474,7 +1481,7 @@ Theorem andb_eq_orb :
   b = c.
 Proof.
   intros b c. intros H.
-  destruct b eqn:B.
+  destruct b eqn:E.
   - simpl in H. rewrite -> H. reflexivity.
   - simpl in H. rewrite -> H. reflexivity.
 Qed.  
@@ -1521,7 +1528,7 @@ Fixpoint incr (m:bin) : bin :=
   | Z => B1 Z
   | B0 n => B1 n
   | B1 n => B0 (incr n)
-  end.  
+  end.
 
 Fixpoint bin_to_nat (m:bin) : nat :=
   match m with
