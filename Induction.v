@@ -277,7 +277,7 @@ Proof.
 
 (* FILL IN HERE *)
 *)
-(* REPLACE THIS LINE WITH ":= _your_definition_ ." *) Admitted.
+(* REPLACE THIS LINE WITH ":= _your_definition_ ." *)
 (** [] *)
 
 (* ################################################################# *)
